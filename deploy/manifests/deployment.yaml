@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: "2021-10-24T16:07:30Z"
+  generation: 1
+  labels:
+    app: fastapi-learning
+  name: fastapi-learning
+  resourceVersion: "1943846"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/fastapi-learning
+  uid: 7e856228-58ca-42a7-90bc-d418506a1e71
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: fastapi-learning
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fastapi-learning
+    spec:
+      containers:
+      - image: gabormolnar0708/fastapi-learning
+        imagePullPolicy: Always
+        name: fastapi-learning
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
